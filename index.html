@@ -9,19 +9,32 @@
 </head>
 <body>
 	<div class="sa">
+		<div class="title">Comments</div>
+		<div class="description">
+			<div class="comment"><a href="https://github.com/Dnddtw/post.js" target="_blank">GitHub</a> - опис функцій, .js файли, html-розмітка та стилі для копіювання.</div>
+			<div class="comment"><a href="https://drive.google.com/drive/u/0/folders/1TGA9HGJu4Ay499M6wJS629dQ-ScXvgup" target="_blank">EveradDriveGoogle</a> - всі наявні файли. Оновляються при внесенні правок.</div>
+			<div class="comment"><span class="tag">postDate.js, postCalendar.js</span> не потребують jQuery бібліотеки.</div>
+		</div>
+	</div>
+	<div class="sa">
+		<div class="title">Як користуватись</div>
+		<div class="comment">Скачуємо *.js файл з Google диску або GitHub, підключаємо до сторінки. На початку кожного скрипта знаходиться функція в яку можна передати необхідні аргументи.</div>
+		<div class="comment"><img src="images/example.png" alt="" class="sa-img" style="max-width: 100%;"></div>
+	</div>
+	<div class="sa" id="postDate">
 		<div class="title"><a href="" class="post">postDate('dateFormat', 'ru', false);</a> <span class="margin br">// dateFormat (string), language (string), abbreviated (bool). Default: 'dd.mm.yyyy', 'ru', false</span></div>
 		<div class="description">
 			<p>Додаємо клас "date-N", де N - кількість "відмотаних" днів. <br> 
-			Наприклад, <pre><code><span class="date-0"></span></code></pre>- мотає 0 днів назад (сьогодні).</p>
+			Наприклад, <span class="tag">span class="date-0"</span> - мотає 0 днів назад (сьогодні).</p>
 			<div class="code"><span class="date-0"></span></div>
-			<p>Вивід дати (+ години + хвилини), додаємо клас "time". Наприклад, <span class="tag">span class="date-1 time"</span>.</p>
+			<p id="postDate1">Вивід дати (+ години + хвилини), додаємо клас "time". Наприклад, <span class="tag">span class="date-1 time"</span>.</p>
 			<div class="code">
 				<span class="date-1 time"></span><br>
 				<span class="date-1 time"></span><br>
 				<span class="date-1 time"></span><br>
 				<span class="date-1 time"></span>
 			</div>
-			<p>Працює як в порядку зростання, так і в порядку спадання (міняємо флажок в функції):</p>
+			<p id="postDate2">Працює як в порядку зростання, так і в порядку спадання (міняємо флажок в функції):</p>
 			<div class="code mark">
 				<span class="date-3 time"></span><br>
 				<span class="date-3 time"></span><br>
@@ -29,7 +42,7 @@
 				<span class="date-3 time"></span>
 			</div>
 			<p>Можна задавати формат часу для окремих дат. Зазвичай, на початку пре-лендінг сторінки йде дата публікації статті, а внизу сторінки - коментарі з датою. Додаємо <span class="tag">data-format="format"</span> до тегу з класом <span class="tag">date</span>.</p>
-			<p class="no">Наприклад: <br>
+			<p class="no" id="postDate3">Наприклад: <br>
 				<span class="tag">span class="date-8"</span><br>
 				<span class="tag">span class="date-8"</span><br>
 				<span class="tag">span class="date-8"</span><br>
@@ -41,9 +54,9 @@
 				<span class="date-8"></span> <br>
 				<span class="date-8" data-format="day dd, month yyyy"></span> 
 			</div>
-			<p>Передаємо другим аргументом функції назву країни: <span class="tag">postDate('dd month yyyy', 'fr');</span></p>
+			<p id="postDate4">Передаємо другим аргументом функції назву країни: <span class="tag">postDate('dd month yyyy', 'fr');</span></p>
 			<div class="code">20 Février 2018</div>
-			<p>Передаємо третій аргумент функції <span class="tag">true</span>, якщо необхідне скорочення до трьох символів: <span class="tag">postDate('dd month yyyy', 'de', true);</span></p>
+			<p id="postDate5">Передаємо третій аргумент функції <span class="tag">true</span>, якщо необхідне скорочення до трьох символів: <span class="tag">postDate('dd month yyyy', 'de', true);</span></p>
 			<div class="code">21 feb 2018</div>
 			<p>Доступні мови (лише місяці, дні не переведені):</p>
 			<div class="code">
@@ -72,8 +85,7 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="sa">
+	<div class="sa" id="postSeason">
 		<div class="title">postSeason('ua') <span class="margin br">// Argument: language (string). Default: 'ua'</span></div>
 		<div class="description">
 			<p>Додаємо класс <span class="tag">season</span> до будь-якого тегу. Наприклад, <span class="tag">span class="season"</span></p>
@@ -81,7 +93,7 @@
 				<span class="season"></span>
 			</div>
 			<p>Доступні мови:</p>
-			<div class="code">
+			<div class="code pre">
 				'ro':  <span class="margin"></span> Romania <br>
 				'hr':  <span class="margin"></span> Croatia <br>
 				'vn':  <span class="margin"></span> Vietnam <br>
@@ -102,35 +114,35 @@
 			</div>
 		</div>
 	</div>
-	<div class="sa">
+	<div class="sa" id="postSpoiler">
 		<div class="title">postSpoiler('spoil', ['Показати фото', 'Сховати фото'], ['spoiler-text', 'spoiler-content']); <span class="margin br">// Arguments: spoilerName (string), textArray (array), classesArray (array). <br> // Default: 'spoil', ['Показати фото', 'Сховати фото'], ['spoiler-text', 'spoiler-content']</span></div>
 		<div class="description">
 			<p>Блок з текстом - <span class="tag">spoil</span>. Всередині нього блок з текстом <span class="tag">(spoiler-text)</span> та наступний по DOM-дереву блок с прихованим контентом <span class="tag">(spoiler-content)</span></p>
 			<p class="no">Блок-контейнер, внутрішні блоки та текст можна змінювати передаючи аргументи при виклику функції.</p>
-			<p class="no">Наприклад:</p>
+			<p class="no" id="postSpoiler1">Наприклад:</p>
 			<div class="code">
 				<div class="spoil">
 					<div class="spoiler-text">Показати фото</div>
 				</div>
 				<div class="spoiler-content">
-					<img class='sa-img' src="images/css.jpg" alt="">
+					<img class='sa-img' src="css.jpg" alt="">
 				</div>
 				<div class="spoil">
 					<div class="spoiler-text">Показати фото</div>
 				</div>
 				<div class="spoiler-content">
-					<img class='sa-img' src="images/css2.jpg" alt="">
+					<img class='sa-img' src="css2.jpg" alt="">
 				</div>
 			</div>
 			<p>Можна викликати функцію для зміну тексту, передаючи другий аргумент в функцію у вигляди масиву рядків: <span class="tag">["Show photo", "Hide photo"]</span> - <span class="tag">postSpoiler('', ['Show photo', 'Hide photo']);</span></p>
 			<p>Можна задати	 назви блоків, щоб не копатись в html-коді, якщо спойлер вже є на сторінці: - <span class="tag">postSpoiler('', '', ['text', 'conent'];</span></p>
 		</div>
 	</div>
-	<div class="sa">
+	<div class="sa" id="postCalendar">
 		<div class="title">Calendar</div>
 		<div class="description">
 			<p>Календар задається у формі таблиці <span class="tag">id="calendar"</span> (можна змінити в разі необхідності).</p>
-			<p class="no">Копіюємо html-розмітку та стилі. Отримуємо:</p>
+			<p class="no" id="postCalendar1">Копіюємо html-розмітку та стилі. Отримуємо:</p>
 			<div class="code">
 				<table id="calendar">
 				  <thead>
@@ -142,13 +154,12 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="sa">
+	<div class="sa" id="postFixedSidebar">
 		<div class="title">postFixedSidebar(className) <span class="margin br">// Argument: className (string). Default: 'sticky'</span></div>
 		<div class="description">
 			<p>Задаємо клас <span class="tag">sticky</span> для блоку, який хочемо зафіксувати + копіюємо стилі для коректного відображення.</p>
 			<p class="no">При потребі, клас можна задати свій. Тоді змінюємо css-стилі для свого класу <span class="tag">.className-wrapper</span> та <span class="tag">.className-wrapper.fixed</span>. Частину <span class="tag">wrapper</span> не потрібно видаляти. Вона автоматично додається для коректного відображення.</p>
-			<p class="no">Приклад:</p>
+			<p class="no" id="postFixedSidebar1">Приклад:</p>
 			<div class="code">
 				<div class="spoil"><div class="spoiler-text"></div></div>
 				<div class="spoiler-content">
@@ -159,18 +170,16 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="sa">
+	<div class="sa" id="postPopup">
 		<div class="title">postPopup();</div>
 		<div class="description">
-			<p>Копіюємо html-розмітку <b>в кінець сторінки</b> та стилі (або підганяємо під дизайн сторінки самостійно). Тикаємо по кнопці і виводимо мишку за межі екрану вверх. В результаті отримуємо:</p>
+			<p id="postPopup1">Копіюємо html-розмітку <b>в кінець сторінки</b> та стилі (або підганяємо під дизайн сторінки самостійно). Тикаємо по кнопці і виводимо мишку за межі екрану вверх. В результаті отримуємо:</p>
 			<div class="code">
 				<button class="turn">Включити pop-up</button>
 			</div>
 
 		</div>
 	</div>
-
 	<div class="screenLock">
 	    <div class="message" >
 	        <div class="screenLockClose">X</div>
@@ -178,5 +187,6 @@
 	        <a href="" class="submit-popup">Получите дырку от бублика бесплатно!</a>
 	    </div>
     </div>
+    <script type="text/javascript" src="js/scroll.js"></script>
 </body>
 </html>
