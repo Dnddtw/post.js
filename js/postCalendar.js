@@ -1,11 +1,11 @@
-$(document).ready(function() {
-
+document.addEventListener("DOMContentLoaded", function() {
+    
     // Календар (таблиця)
-    var calendarName = 'calendar',					// Calendar's id
-    	forCalendarQuery = '#' + calendarName;
+    var calendarName = 'calendar',                  // Calendar's id
+        forCalendarQuery = '#' + calendarName;
 
-	postCalendar(calendarName, new Date().getFullYear(), new Date().getMonth());
-	postCalendarTriggers(calendarName, forCalendarQuery);
+    postCalendar(calendarName, new Date().getFullYear(), new Date().getMonth());
+    postCalendarTriggers(calendarName, forCalendarQuery);  
 
 });
 

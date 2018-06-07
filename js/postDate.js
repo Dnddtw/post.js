@@ -1,12 +1,12 @@
-$(document).ready(function() {
-
-	// Вивід дати (+ час).
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // Вивід дати (+ час).
     // Arguments: dateFormat (string), language (string), abbreviated (bool). Default: 'dd.mm.yyyy', 'ru', false
-    postDate(/*'dateFormat', 'ru', false*/);		
+    postDate(/*'dateFormat', 'ru', false*/);   
 
 });
 
-function postDate(sa) {
+function postDate(sa, countryName, isAbbreviated) {
     // Додаємо клас "date-N", де N - кількість "відмотаних" днів.
     // Наприклад, span class="date-0"></span> - мотає 0 днів назад (сьогодні).
     // Наприклад, span class="date-5"></span> - мотає 5 днів назад.
@@ -18,8 +18,9 @@ function postDate(sa) {
     var sa = sa || 'dd.mm.yyyy',
         msInDay = 86400000,
         counterLength = 90,  // Максимальна кількість вімотаних днів. Змінюємо за необхідності.
-        months, countryName = 'ru',  // Мова для місяців. 
-        isAbbreviated = false, // Якщо потрібно скорочений варіант місяців з трьох букв, наприклад "янв", "июн", тоді ставим TRUE.
+        months, 
+        countryName = countryName || 'ru',  // Мова для місяців. 
+        isAbbreviated = isAbbreviated || false, // Якщо потрібно скорочений варіант місяців з трьох букв, наприклад "янв", "июн", тоді ставим TRUE.
         localDate = new Date();
                                    
     switch(countryName) {
