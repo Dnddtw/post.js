@@ -94,6 +94,7 @@ dd month
 day dd, month yyyy 
 dd/mm/yyyy 
 dd-mm-yyyy 
+yyyy.mm.dd
 ```
 
 ## [postSeason('ua');](http://sa.post.js.rcktprft.ru#postSeason)
