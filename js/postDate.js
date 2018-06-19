@@ -227,6 +227,14 @@ function postDate(sa, countryName, isAbbreviated) {
                 innerDate += ", ";
                 innerDate += year;
                 return innerDate;
+
+            case "dd month, yyyy":
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += " ";
+                innerDate += months[month - 1];
+                innerDate += ", ";
+                innerDate += year;
+                return innerDate;
             
             default: 
                 innerDate += (day < 10) ? ("0" + day) : day;
