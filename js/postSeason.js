@@ -9,7 +9,6 @@ function postSeason(language) {
 
     var seasons = [],
     	month = new Date().getMonth() + 1;
-    	month = 12;
 
     month = month == 12 ? 0 : month;
 
