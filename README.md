@@ -12,14 +12,8 @@ Here you find the separated post.js functions and might to find their html-code/
   postPopup();
 ```
 
-## [postDate(dateFormat, language, abbreviated);](http://sa.post.js.rcktprft.ru#postDate)
+## [postDate();](http://sa.post.js.rcktprft.ru#postDate)
 
-
-Arguments:
-  ``` javascript
-      dateFormat (string), language (string), abbreviated (bool)
-      Default: 'dd.mm.yyyy', 'ru', false
-  ```
 
 Додаємо клас `date-N`, де N - кількість "відмотаних" днів. <br />
 [Наприклад](http://sa.post.js.rcktprft.ru#postDate1), код нижче, "мотає" 0 днів назад (тобто, сьогодні).
@@ -56,18 +50,14 @@ Arguments:
 <span class="date-8" data-format="day dd, month yyyy"></span>
 ``` 
 
-Передаємо другим аргументом функції назву країни: `postDate('dd month yyyy', 'fr');`. Результат:
+Стандартний формат: `dd.mm.yyyy`. Для встановлення свого формату додаємо дата-атрибут `<body data-post-format="ANY_FORMAT"`, де `dd, mm, yyyy, year` - числа, `day, month` - значення прописом. [Результат](http://sa.post.js.rcktprft.ru#postDate0):</p>
 
-``` html
-20 Février 2018
-```
-Передаємо третій аргумент функції `true`, якщо необхідне скорочення до трьох символів: `postDate('dd month yyyy', 'de', true);`. Результат:
-
-``` html
-  21 feb 2018
+```html
+  "dd day, month year": <span class="date-0" data-format="dd day, month year"></span>
 ```
 
-Доступні мови (лише місяці, дні не переведені):
+
+Доступні мови:
 
 ``` javascript
 'it': Italy 
@@ -84,20 +74,6 @@ Arguments:
 'ru': Russia 
 ```
 
-Доступні формати виводу дати (dd, mm, yyyy - цифри, day, month, year - прописом):
-
-``` javascript
-mm.dd.yyyy 
-dd.mm.yyyy 
-dd month yyyy 
-dd month 
-day dd, month yyyy 
-dd/mm/yyyy 
-dd-mm-yyyy 
-yyyy.mm.dd
-month dd, yyyy
-dd month, yyyy
-```
 
 ## [postSeason('ua');](http://sa.post.js.rcktprft.ru#postSeason)
 

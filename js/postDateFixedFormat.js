@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     // Вивід дати (+ час).
-    postDate();   
+    // Arguments: dateFormat (string), language (string), abbreviated (bool). Default: 'dd.mm.yyyy', 'ru', false
+    postDate(/*'dateFormat', 'ru', false*/);   
 
 });
 
-function postDate() {
+function postDate(sa, countryName, isAbbreviated) {
     // Додаємо клас "date-N", де N - кількість "відмотаних" днів.
     // Наприклад, span class="date-0"></span> - мотає 0 днів назад (сьогодні).
     // Наприклад, span class="date-5"></span> - мотає 5 днів назад.
@@ -13,53 +14,14 @@ function postDate() {
     // Вивід дати (+ години + хвилини), додаємо клас "time". Наприклад, <span class="date-1 time"></span>. 
     // Виводить у форматі на зразок "14.02.2018 14:22"
     // Працює як в порядку зростання, так і в порядку спадання (міняємо флажок нижче)
-    var body = document.body;
-    var sa = body.getAttribute('data-post-format') || 'dd.mm.yyyy',
+
+    var sa = sa || 'dd.mm.yyyy',
         msInDay = 86400000,
         counterLength = 90,  // Максимальна кількість вімотаних днів. Змінюємо за необхідності.
         months, 
-        countryName = window.country_code ? window.country_code.toLowerCase() : 'ru',  // Мова для місяців. 
-        isAbbreviated = body.getAttribute('data-post-abbreviated') ? true : false, // Скорочений варіант місяців до трьох букв
+        countryName = countryName || 'ru',  // Мова для місяців. 
+        isAbbreviated = isAbbreviated || false, // Скорочений варіант місяців до трьох букв
         localDate = new Date();
-
-    var days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-
-    switch(countryName) {
-        case 'it':  // Italy
-            days = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
-            break;
-        case 'es':  // Spain
-            days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-            break;
-        case 'fr':  // France
-            days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-            break;
-        case 'pt':  // Portugal
-            days = ['Segund-feira', 'Terç-feira', 'Quart-feira', 'Quint-feira', 'Sext-feira', 'Sábado', 'Domingo'];
-            break;
-        case 'de':  // Germany
-            days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
-            break;
-        case 'bg':  // Bulgaria
-            days = ['Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота', 'Неделя']
-            break;
-        case 'pl':  // Poland
-            days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
-            break;
-        case 'ro':  // Romania
-            days = ['Luni', 'Marţi', 'Miercuri', 'Joi', 'Vineri', 'Sîmbătă', 'Duminică'];
-            break;
-        case 'hu':  // Hungary (Угорщина)
-            days = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat', 'Vasárnap']
-            break;
-        case 'gr':  // Greece
-        case 'cy':  // Cyprus (Кіпр)
-            days = ['Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο', 'Κυριακή']
-            break;
-        case 'ru':  // Russia
-            days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-            break;
-    }
                                    
     switch(countryName) {
         case 'it':  // Italy
@@ -149,7 +111,7 @@ function postDate() {
             if (data.format) {
                 nodeList[i].innerHTML = format(date, data.format);
             } else {
-                nodeList[i].innerHTML = format(date, sa);
+                nodeList[i].innerHTML = format(date/*, "dd month yyyy"*/);
             }
         }
     }
@@ -192,41 +154,92 @@ function postDate() {
         array.push(hours + ":" + minutes);  
         }
         
+
         return array;
     }
 
-    function notLastIteration(index, array) {
-        return index !== array.length - 1;
-    }
-
-    function format(date, format) {
-        var testFormat = ['dd', 'day', 'mm', 'month', 'yyyy', 'year'];
-        var innerDate = format;
-
-        var dd = date.getDate(),
-            mm = date.getMonth() + 1,
+    function format(date, formatstring, separator) {
+        var innerDate = "",
+            day = date.getDate(),
             year = date.getFullYear(),
-            month = months[mm - 1],
-            day = days[new Date(year, mm - 1, dd).getDay()];
+            month = date.getMonth() + 1,
+            fo = formatstring || true;
 
-        dd = (dd < 10) ? ("0" + dd) : dd;
-        mm = (mm < 10) ? ('0' + mm) : mm;
+        switch (fo) {
+            case "mm.dd.yyyy": 
+                innerDate += (month < 10) ? ("0" + month) : month;
+                innerDate += ".";
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += "." + year;
+                return innerDate;            
 
-        var dateFormat = {
-            day: day,
-            dd: dd,
-            year: year,
-            yyyy: year,
-            mm: mm,
-            month: month
-        };
+            case "dd month yyyy": 
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += " ";
+                innerDate += months[month - 1];
+                innerDate += " " + year;
+                return innerDate;      
 
-        for (var i = 0; i < testFormat.length; i++) {
-            var string = testFormat[i];
-            var regExp = new RegExp(string);
-            innerDate = innerDate.replace(regExp, dateFormat[string]);
+            case "dd month": 
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += " ";
+                innerDate += months[month - 1];
+                return innerDate;
+
+            case "day dd, month yyyy": 
+                var days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+                innerDate += days[new Date(year, month - 1, day).getDay()];
+                innerDate += " ";
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += " ";
+                innerDate += months[month - 1];
+                innerDate += " " + year;
+                return innerDate;
+
+            case "dd/mm/yyyy":
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += "/";
+                innerDate += (month < 10) ? ("0" + month) : month;
+                innerDate += "/" + year;
+                return innerDate;
+
+            case "dd-mm-yyyy":
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += "-";
+                innerDate += (month < 10) ? ("0" + month) : month;
+                innerDate += "-" + year;
+                return innerDate;
+
+            case "yyyy.mm.dd":
+                innerDate += year;
+                innerDate += ".";
+                innerDate += (month < 10) ? ("0" + month) : month;
+                innerDate += ".";
+                innerDate += (day < 10) ? ("0" + day) : day;
+                return innerDate;
+
+            case "month dd, yyyy":
+                innerDate += months[month - 1];
+                innerDate += " ";
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += ", ";
+                innerDate += year;
+                return innerDate;
+
+            case "dd month, yyyy":
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += " ";
+                innerDate += months[month - 1];
+                innerDate += ", ";
+                innerDate += year;
+                return innerDate;
+            
+            default: 
+                innerDate += (day < 10) ? ("0" + day) : day;
+                innerDate += ".";
+                innerDate += (month < 10) ? ("0" + month) : month;
+                innerDate += "." + year;
+                return innerDate;
         }
-
-        return innerDate;
     }
 }

@@ -29,7 +29,7 @@
 		<div class="comment"><img src="images/example.png" alt="" class="sa-img" style="max-width: 100%;"></div>
 	</div>
 	<div class="sa" id="postDate">
-		<div class="title"><a href="" class="post">postDate('dateFormat', 'ru', false);</a> <span class="margin br">// dateFormat (string), language (string), abbreviated (bool). Default: 'dd.mm.yyyy', 'ru', false</span></div>
+		<div class="title"><a href="" class="post">postDate();</a></div>
 		<div class="description">
 			<p>Додаємо клас "date-N", де N - кількість "відмотаних" днів. <br> 
 			Наприклад, <span class="tag">span class="date-0"</span> - мотає 0 днів назад (сьогодні).</p>
@@ -48,24 +48,25 @@
 				<span class="date-3 time"></span><br>
 				<span class="date-3 time"></span>
 			</div>
-			<p>Можна задавати формат часу для окремих дат. Зазвичай, на початку пре-лендінг сторінки йде дата публікації статті, а внизу сторінки - коментарі з датою. Додаємо <span class="tag">data-format="format"</span> до тегу з класом <span class="tag">date</span>.</p>
+			<p id="postDate0">Стандартний формат: <span class="tag">dd.mm.yyyy</span>. Для встановлення свого формату додаємо дата-атрибут до body <span class="tag">data-post-format="ANY_FORMAT"</span>, де <span class="tag">dd, mm, yyyy, year</span> - числа, <span class="tag">day, month</span> - значення прописом.</p>
+			<div class="code">
+				"dd day, month year": <span class="date-0" data-format="dd day, month year"></span>
+			</div>
+			<p>Можна задавати формат часу для окремих дат. Зазвичай, на початку пре-лендінг сторінки йде дата публікації статті, а внизу сторінки - коментарі з датою. Додаємо <span class="tag">data-format="ANY_FORMAT"</span> до тегу з класом <span class="tag">date</span>.</p>
 			<p class="no" id="postDate3">Наприклад: <br>
 				<span class="tag">span class="date-8"</span><br>
 				<span class="tag">span class="date-8"</span><br>
 				<span class="tag">span class="date-8"</span><br>
-				<span class="tag">span class="date-8" data-format="day dd, month yyyy"</span>
+				<span class="tag">span class="date-8" data-format="day dd, mm month year and yyyy"</span>
 			</p>
 			<div class="code">
 				<span class="date-8"></span> <br>
 				<span class="date-8"></span> <br>
 				<span class="date-8"></span> <br>
-				<span class="date-8" data-format="day dd, month yyyy"></span> 
+				<span class="date-8" data-format="day dd, mm month year and yyyy"></span> 
 			</div>
-			<p id="postDate4">Передаємо другим аргументом функції назву країни: <span class="tag">postDate('dd month yyyy', 'fr');</span></p>
-			<div class="code">20 Février 2018</div>
-			<p id="postDate5">Передаємо третій аргумент функції <span class="tag">true</span>, якщо необхідне скорочення до трьох символів: <span class="tag">postDate('dd month yyyy', 'de', true);</span></p>
-			<div class="code">21 feb 2018</div>
-			<p>Доступні мови (лише місяці, дні не переведені):</p>
+			<p id="postDate4">Мова встановлюється сама з country_code. Якщо немає перекладу, використовуйте формат на зразок <span class="tag">dd.mm.yyyy</span></p>
+			<p>Доступні мови </p>
 			<div class="code">
 				'it': <span class="margin"></span> Italy  <br> 
 				'es': <span class="margin"></span> Spain  <br> 
@@ -80,7 +81,7 @@
 				'cy': <span class="margin"></span> Cyprus (Кіпр)  <br> 
 				'ru': <span class="margin"></span> Russia  <br> 
 			</div>   
-			<p>Доступні формати виводу дати (dd, mm, yyyy - цифри, day, month, year - прописом):</p>
+			<!-- <p>Доступні формати виводу дати (dd, mm, yyyy - цифри, day, month, year - прописом):</p>
 			<div class="code">
 				mm.dd.yyyy <br>
 				dd.mm.yyyy <br>
@@ -92,7 +93,7 @@
 				yyyy.mm.dd <br>
 				month dd, yyyy <br>
 				dd month, yyyy <br>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="sa" id="postSeason">
