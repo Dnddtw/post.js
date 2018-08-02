@@ -6,51 +6,44 @@ $(document).ready(function() {
 });
 
 function postFixedSidebar(className) {
-	/*
-		styles for parent block:
+    /*
+        styles for parent block:
 
-		.sticky-wrapper {
-		    width: inherit;
-		    left: auto;
-		    right: auto;
-			transition: all 0.2s linear;
-		}
+        .sticky-wrapper {
+            width: inherit;
+            left: auto;
+            right: auto;
+            transition: all 0.2s linear;
+        }
 
-		.sticky-wrapper.fixed {
-			position: fixed;
-		}
-	*/
+        .sticky-wrapper.fixed {
+            position: fixed;
+            top: 0;
+        }
+    */
 
-	var className = className || 'sticky';
-	var $sticky = $('.' + className).wrap('<div class="' + className +'-wrapper"></div>').parent();
+    var className = className || 'sticky';
+    var $sticky = $('.' + className).wrap('<div class="' + className +'-wrapper"></div>').parent();
+    var stickyTop = $sticky[0].getBoundingClientRect().top + pageYOffset;
+    var outerWidth = $sticky.outerWidth();
 
-	$(window).scroll(fixedScrolling);
+    $(window).scroll(fixedScrolling);
 
-	function isScreen(element) {
-		var win = $(window),
-		    winTop = win.scrollTop(),
-		    stickyTop = element[0].getBoundingClientRect().top + pageYOffset;
-		    // winHeight = win.height(),
-		    // stickyBox = element.height() + stickyTop;
+    function isScreen(element) {
+        var winTop = $(window).scrollTop();
 
-		// console.log(element);
-		// console.log('stickyTop, winTop: ' + stickyTop + ' <= ' + winTop);
-		// console.log('winTop + winHeight, stickyBox: ' + winTop + ' + ' + winHeight + ' <= ' + stickyBox);
-		// console.log((winTop + winHeight) + ' <= ' + stickyBox);
-		// console.log((stickyTop <= winTop && winTop + winHeight <= stickyBox));
+        // console.log(element);
+        // console.log('stickyTop, winTop: ' + stickyTop + ' <= ' + winTop);
+        // console.log('winTop + winHeight, stickyBox: ' + winTop + ' + ' + winHeight + ' <= ' + stickyBox);
+        // console.log((winTop + winHeight) + ' <= ' + stickyBox);
+        // console.log((stickyTop <= winTop && winTop + winHeight <= stickyBox));
 
-		return (stickyTop <= winTop);
-	}
+        return (stickyTop <= winTop);
+    }
 
-	function fixedScrolling() {
-		var scroll = $(window).scrollTop(),
-		    parent = $sticky.parent();
-		    // stickyTop = parent[0].getBoundingClientRect().top + pageYOffset;
-
-		if (isScreen(parent)) {
-		  $sticky.addClass('fixed');
-		} else {		  
-		  $sticky.removeClass('fixed');
-		} 
-	}
+    function fixedScrolling() {
+        var scroll = $(window).scrollTop();
+        if (isScreen()) $sticky.addClass('fixed').css({ maxWidth: outerWidth });
+        else $sticky.removeClass('fixed');
+    }
 }
