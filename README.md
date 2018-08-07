@@ -4,12 +4,12 @@ Here you find the separated post.js functions and might to find their html-code/
 Опис функцій також та результати виконання можна знайти [тут](http://sa.post.js.rcktprft.ru).
 
 ``` javascript
-  postDate(dateFormat, language, abbreviated);
-  postSeason(language);
-  postSpoiler(spoilerName, textArray, classesArray);
-  postCalendar();
-  postFixedSidebar(className);
-  postPopup();
+  postDate(dateFormat, language, abbreviated) - додавання дати довільних форматів та часу
+  postSeason(language) - пори року
+  postSpoiler(spoilerName, textArray, classesArray) - спойлер
+  postCalendar() - календар
+  postFixedSidebar(className) - фіксований сайдбар
+  postPopup() - поп-ап при виводі курсору миші за межі вікна браузера
 ```
 
 ## [postDate();](http://sa.post.js.rcktprft.ru#postDate)
