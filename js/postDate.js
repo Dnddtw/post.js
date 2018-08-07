@@ -13,12 +13,16 @@ function postDate() {
     // Вивід дати (+ години + хвилини), додаємо клас "time". Наприклад, <span class="date-1 time"></span>. 
     // Виводить у форматі на зразок "14.02.2018 14:22"
     // Працює як в порядку зростання, так і в порядку спадання (міняємо флажок нижче)
-    var body = document.body;
+    var body = document.body,
+        postLang = body.getAttribute('data-post-lang');
+
     var sa = body.getAttribute('data-post-format') || 'dd.mm.yyyy',
         msInDay = 86400000,
         counterLength = 90,  // Максимальна кількість вімотаних днів. Змінюємо за необхідності.
         months, 
-        countryName = window.country_code ? window.country_code.toLowerCase() : 'ru',  // Мова для місяців. 
+        countryName = postLang ? postLang 
+            : window.country_code ? window.country_code.toLowerCase() 
+            : 'ru',  // Мова для місяців. 
         isAbbreviated = body.getAttribute('data-post-abbreviated') ? true : false, // Скорочений варіант місяців до трьох букв
         localDate = new Date();
 
